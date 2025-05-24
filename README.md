@@ -1,82 +1,98 @@
-# 📘 Student Grade Analyzer (SGA v2)
+# Student Grade Analyzer v2 (SGA v2)
 
-## 🧠 Project Overview
-
-**SGA v2** is a command-line interface (CLI) Python program designed to help users collect and analyze student grades over four academic quarters. It builds upon earlier versions by introducing modularity, structured data collection, and a clear roadmap for future enhancements.
+SGA v2 is a Python-based CLI tool designed to help educators or users manage and analyze student grades across multiple grading periods. This version features a more robust structure, letter grading system, improved input validation, and an extendable architecture.
 
 ---
 
-## ✅ Current Features
+## ✅ Current Features (as of v2 Progress)
 
-- Prompts for the number of students to be added.
-- Collects:
-  - Validated **student names** (alphabetic only, no numbers or special characters).
-  - **Four quarterly scores** (validated for numeric range between 1–100).
-- Stores each student record as:
-  ```python
-  ['Student Name', [score1, score2, score3, score4]]
-  ```
-- Contains utility function `is_valid_name()` for input sanitization.
-- Initial implementation of `analyze_scores()` to determine:
-  - Highest and lowest scores
-  - Average score
-  - Passed and failed students (based on a threshold)
-  - Sorted list of students
+### 🔢 1. Multiple Scores Per Student (Per Quarter)
+Each student has 4 scores:
+- 1st Quarter
+- 2nd Quarter
+- 3rd Quarter
+- 4th Quarter
+
+### 🧮 2. Average Score Per Student
+Each student’s average is automatically calculated from the 4 quarterly scores.
+
+### 🔠 3. Letter Grading System
+Each score and average is converted into a letter grade:
+- A: 90–100
+- B: 80–89
+- C: 70–79
+- D: 60–69
+- F: 59 and below
+
+### 🧼 4. Name Validation
+Accepts names containing:
+- Letters (A–Z, a–z)
+- Spaces
+- Apostrophes (e.g., O'Connor)
+- Tilde-N (Ñ/ñ)
+
+### 🧠 5. Robust Input Validation
+- Accepts only numeric scores between **1 and 100**
+- Handles invalid input types and out-of-range values gracefully
+
+### 🖥️ 6. CLI Menu System (Shell-Style)
+User-friendly CLI menu allows users to:
+- Add a student
+- Edit student data *(Coming soon)*
+- Remove a student *(Coming soon)*
+- View all student records *(Coming soon)*
+- Analyze class scores (average, top, bottom, pass/fail breakdown)
+- Exit the program
+
+### 🗂️ 7. Organized Codebase
+Code is modularized into three parts:
+- `main.py` – Data collection entry point
+- `cli_shell.py` – CLI-based interface for interaction
+- `utils.py` – Contains helper functions for grading and analysis
+
+### 📊 8. Analytics Features
+The `analyze_scores()` function provides:
+- Class average and its letter grade
+- Highest and lowest scoring students
+- Sorted list of students by name
+- Pass/Fail count breakdown
 
 ---
 
-## 🧩 File Structure
+## 🔧 Planned Features (In Progress)
+- Full implementation of View, Edit, Remove functions in CLI
+- Sorting options (by name, average score)
+- Save/load data (file persistence)
+- GUI/Web version
+- More grading rubrics
+
+---
+
+## 📁 Sample File Structure
 
 ```
-📦SGA-v2/
- ┣ 📄 main.py        # Main program logic for student input and validation
- ┣ 📄 utils.py       # Utilities: name validation and score analysis
- ┣ 📄 cli_shell.py   # CLI shell: menu and user navigation logic
- ┗ 📄 README.md      # Project overview and development roadmap
+sga_project/
+│
+├── main.py          # Collects student input
+├── cli_shell.py     # CLI interaction with menu
+├── utils.py         # Grade analysis, validation, formatting
+└── README.md        # Documentation file
 ```
 
 ---
 
-## 🚧 Upcoming Features
-
-### 🔹 1. Average Score Per Student
-Each student’s average will be computed from the 4 scores.
-
-### 🔹 2. Letter Grading System
-A–F grading will be implemented both per score and for overall average:
-```
-A = 90–100
-B = 80–89
-C = 75–79
-D = 70–74
-F = Below 70
-```
-
-### 🔹 3. Data Structure Update
-Students will be stored in this format for deeper analysis:
+## 🧠 Example Output Summary (via `analyze_scores()`)
 ```python
-['Name', [score1, score2, score3, score4], average, letter_grade]
+Highest Scorer: Bibi - [90, 80, 22.19]
+Lowest Scorer: Rod - [88, 90, 29, 39]
+Average Score: 61.24
+Grade Average: D
+Passed Students: [('Bibi', [90, 80, 22.19])]
+Failed Students (1): [('Rod', [88, 90, 29, 39])]
 ```
-
-### 🔹 4. Enhanced CLI Features
-- Add / Edit / Remove students
-- Display all current records
-- Trigger full analysis from CLI
-
-### 🔹 5. File Saving and Loading (Planned v3)
-- Save student records to a file
-- Load data from existing files
-
-### 🔹 6. Search and Filter (Planned v3)
-- Filter by pass/fail
-- Search by name or letter grade
 
 ---
 
 ## 👨‍💻 Author
-
-Developed by **Rodrigo Toh** as a part of his Python learning journey toward AI/ML development. The project is intentionally structured and built step-by-step for clarity, modularity, and hands-on learning.
-
----
-
-> *“Built line-by-line, learned the same way.”*
+**Rodrigo Toh** – Freelance Python Developer & AI/ML Student  
+GitHub: [rodrigotoh019](https://github.com/rodrigotoh019)
