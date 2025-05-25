@@ -1,98 +1,56 @@
-# Student Grade Analyzer v2 (SGA v2)
+# Student Grade Analyzer v2
 
-SGA v2 is a Python-based CLI tool designed to help educators or users manage and analyze student grades across multiple grading periods. This version features a more robust structure, letter grading system, improved input validation, and an extendable architecture.
+This is an updated version of the Student Grade Analyzer (SGA) project by Rodrigo Toh, designed to be more modular, readable, and future-proof. This update focuses on breaking down the core `analyze_scores` function into helper sub-functions, returning structured data for cleaner logic, and preparing for the next stage — Command Line Interface (CLI) interaction.
 
----
+## ✅ What's New (as of May 25, 2025)
 
-## ✅ Current Features (as of v2 Progress)
+### 🧠 Modular Function Design
 
-### 🔢 1. Multiple Scores Per Student (Per Quarter)
-Each student has 4 scores:
-- 1st Quarter
-- 2nd Quarter
-- 3rd Quarter
-- 4th Quarter
+The `analyze_scores()` function has been split into the following sub-functions for better reusability and debugging:
 
-### 🧮 2. Average Score Per Student
-Each student’s average is automatically calculated from the 4 quarterly scores.
+- `get_score_grade_average()` — Computes the overall average score and grade.
+- `get_highest_lowest_scores()` — Finds the highest and lowest scoring students.
+- `get_passed_failed_students()` — Separates passed and failed students and counts failures. Now returns a dictionary for clarity.
+- `sort_students_by_name()` — Sorts the student list alphabetically by name.
 
-### 🔠 3. Letter Grading System
-Each score and average is converted into a letter grade:
-- A: 90–100
-- B: 80–89
-- C: 70–79
-- D: 60–69
-- F: 59 and below
+### 🧼 Clean Main Function
 
-### 🧼 4. Name Validation
-Accepts names containing:
-- Letters (A–Z, a–z)
-- Spaces
-- Apostrophes (e.g., O'Connor)
-- Tilde-N (Ñ/ñ)
+The updated `analyze_scores()` now uses unpacking and organized variable assignments to prepare a `result` dictionary for all student insights.
 
-### 🧠 5. Robust Input Validation
-- Accepts only numeric scores between **1 and 100**
-- Handles invalid input types and out-of-range values gracefully
-
-### 🖥️ 6. CLI Menu System (Shell-Style)
-User-friendly CLI menu allows users to:
-- Add a student
-- Edit student data *(Coming soon)*
-- Remove a student *(Coming soon)*
-- View all student records *(Coming soon)*
-- Analyze class scores (average, top, bottom, pass/fail breakdown)
-- Exit the program
-
-### 🗂️ 7. Organized Codebase
-Code is modularized into three parts:
-- `main.py` – Data collection entry point
-- `cli_shell.py` – CLI-based interface for interaction
-- `utils.py` – Contains helper functions for grading and analysis
-
-### 📊 8. Analytics Features
-The `analyze_scores()` function provides:
-- Class average and its letter grade
-- Highest and lowest scoring students
-- Sorted list of students by name
-- Pass/Fail count breakdown
-
----
-
-## 🔧 Planned Features (In Progress)
-- Full implementation of View, Edit, Remove functions in CLI
-- Sorting options (by name, average score)
-- Save/load data (file persistence)
-- GUI/Web version
-- More grading rubrics
-
----
-
-## 📁 Sample File Structure
-
-```
-sga_project/
-│
-├── main.py          # Collects student input
-├── cli_shell.py     # CLI interaction with menu
-├── utils.py         # Grade analysis, validation, formatting
-└── README.md        # Documentation file
-```
-
----
-
-## 🧠 Example Output Summary (via `analyze_scores()`)
 ```python
-Highest Scorer: Bibi - [90, 80, 22.19]
-Lowest Scorer: Rod - [88, 90, 29, 39]
-Average Score: 61.24
-Grade Average: D
-Passed Students: [('Bibi', [90, 80, 22.19])]
-Failed Students (1): [('Rod', [88, 90, 29, 39])]
+def analyze_scores(students_data):
+    avg_score, avg_grade = get_score_grade_average(students_data)
+    highest, lowest = get_highest_lowest_scores(students_data)
+    pass_fail_data = get_passed_failed_students(students_data)
+    passed = pass_fail_data["passed"]
+    failed = pass_fail_data["failed"]
+    fail_count = pass_fail_data["fail_count"]
+    sorted_students = sort_students_by_name(students_data)
+
+    result = {
+        'average_score': avg_score,
+        'grade_average': avg_grade,
+        'highest': highest,
+        'lowest': lowest,
+        'passed': passed,
+        'failed': failed,
+        'fail_count': fail_count,
+        'sorted_students': sorted_students,
+    }
+    return result
 ```
+
+## 📁 File Structure (Planned)
+
+- `main.py` — Main CLI entry point (coming next).
+- `utils.py` — Contains all helper functions.
+- `README.md` — You are here.
+
+## 🔜 Next Step
+
+- Begin implementing the CLI interface to interact with the system via user input and options.
+- Provide users with the ability to add, edit, remove, and analyze student records directly from the terminal.
 
 ---
 
-## 👨‍💻 Author
-**Rodrigo Toh** – Freelance Python Developer & AI/ML Student  
-GitHub: [rodrigotoh019](https://github.com/rodrigotoh019)
+Project maintained by [Rodrigo Toh](https://github.com/rodrigotoh019)

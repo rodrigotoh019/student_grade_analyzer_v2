@@ -25,5 +25,5 @@ for i in range(1, num_students + 1):
                     print('Invalid Input! Please enter a numeric value.')
 
         # Appending every data set to the main list
-        students.append([name, scores])  # (['name'], [score1, score2, score3, score4])
+        students.append({'name': name, 'scores': scores})  # Append as a dict. flexible editing and removing data
         break
