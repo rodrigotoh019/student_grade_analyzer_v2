@@ -107,7 +107,7 @@ def analyze_scores(students_data):
 results = analyze_scores(students)
 
 print("\n--- Analysis Summary ---")
-print(f"Average Score: {results['average']}")
+print(f"Average Score: {results['average_score']}")
 print(f"Average Grade: {results['grade_average']}")
 print(f"Highest Scorer: {results['highest'][0]} - {results['highest'][1]}")
 print(f"Lowest Scorer: {results['lowest'][0]} - {results['lowest'][1]}")

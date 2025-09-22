@@ -54,3 +54,9 @@ def analyze_scores(students_data):
 ---
 
 Project maintained by [Rodrigo Toh](https://github.com/rodrigotoh019)
+>This project reflects Rodrigo's structured and deep learning process as he transitions from fundamentals to real-world Python applications. 
+It's a living project that evolves as he grows.
+
+---
+## License
+This project is licensed under the [MIT License.](./License)
